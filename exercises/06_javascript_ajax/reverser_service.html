@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <title>reverse page</title>
+     <script src="lib/jquery-1.11.3.min.js"></script>
+     <script>
+          $(document).ready(function(){
+          "use strict";
+          var word={};
+          $("#reverser").submit(function(e){
+            e.preventDefault();
+            var myvalue=document.getElementById('toBeReversed').value;
+            word.payload=reverse1(myvalue);
+            window.parent.postMessage(word,'*');
+
+          });
+          $("#clearInput").click(function(e){
+            e.preventDefault();
+            var myvalue=document.getElementById('toBeReversed').value;
+            word.payload="INPUT CLEARED";
+            window.parent.postMessage(word,'*');
+            document.getElementById('toBeReversed').value="";
+
+          });
+
+        function reverse1(str) {
+                 var org = '';
+                 for (var i = str.length - 1; i >= 0; i--)
+                   org += str[i];
+                 return org;
+               }
+
+
+
+       });
+
+
+     </script>
+   </head>
+
+   <body>
+     <form id="reverser" target="encoder_iframe">
+       <input id="toBeReversed" name="input" type="text">
+        <input type="submit" id="submitReverser" >
+
+     </form>
+     <button id="clearInput">Clear Input</button>
+
+
+   </body>
+</html>
